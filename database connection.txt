@@ -1,0 +1,31 @@
+package jdb;
+import java.sql.*;
+public class dbc {
+ 
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	try
+	{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con =DriverManager.getConnection("jdbc:mysql://localhost:3307/shrdha", "root", "root");
+	Statement stm = con.createStatement();
+	//stm.executeUpdate("create table stud(rollno int,name varchar(10),fees float)");
+	//stm.executeUpdate("insert into stud values(13,'mohit',80000)");
+	ResultSet rs = stm.executeQuery("select * from stud");
+	while(rs.next())
+	{
+		int a =rs.getInt("rollno");
+		String b = rs.getString("name");
+		float c =rs.getFloat("fees");
+		System.out.println("rollno:"+a+"\tname:"+b+"\tfees:"+c);
+	}
+ 
+	}
+	catch(Exception e)
+	{
+		System.out.println(e);
+	}
+ 
+	}
+ 
+}
