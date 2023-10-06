@@ -1,14 +1,16 @@
+package db;
+
 import java.sql.*;
 import java.util.*;
 import java.io.*;
-public class VaibhavDB
+public class connect
 {
  
 	public static void main(String arg[])
 	{
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/db06","amey","amey11");
+			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3307/anurag","root","root");
 			PreparedStatement stm=null;
 			Statement stmt=conn.createStatement();
 			int ch;
@@ -28,7 +30,7 @@ public class VaibhavDB
 						System.out.println("Enter Name");
 						n=br.readLine();
  
-						String sql = "insert into student "+ " (roll,name)" + " values (?, ?)";
+						String sql = "insert into info "+ " (roll,name)" + " values (?, ?)";
 						stm = conn.prepareStatement(sql);
  
 						// set param values
@@ -44,7 +46,7 @@ public class VaibhavDB
 						r=Integer.parseInt(br.readLine());
 						System.out.println("Enter Name");
 						n=br.readLine();
-						 String query = "update student set name=? where roll=? ";
+						 String query = "update info set name=? where roll=? ";
 				         stm = conn.prepareStatement(query);
 				         stm.setString(1, n);
 				         stm.setInt(2, r);
@@ -55,7 +57,7 @@ public class VaibhavDB
 						System.out.println("Enter Roll No to update");
 						r=Integer.parseInt(br.readLine());
  
-						String sql1="DELETE FROM student WHERE roll=?";
+						String sql1="DELETE FROM info WHERE roll=?";
 						stm= conn.prepareStatement(sql1);
 						stm.setInt(1, r);
 						stm.execute();
@@ -65,7 +67,7 @@ public class VaibhavDB
  
 					case 4:
  
-						String qr= "SELECT * FROM student ORDER BY roll";
+						String qr= "SELECT * FROM info ORDER BY roll";
 						ResultSet rs=stmt.executeQuery(qr);
 						while(rs.next())
 						{
